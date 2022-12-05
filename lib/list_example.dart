@@ -53,12 +53,10 @@ class _ListExampleState extends State<ListExample> {
             itemBuilder: (context, index) {
               switch (provider.questionList[index].runtimeType) {
                 case ChoiceQuestion:
-                  return Selector<QuestionProvider, ChoiceQuestion>(
-                    selector: (_, provider) =>
-                        provider.questionList[index] as ChoiceQuestion,
+                  return Selector<QuestionProvider, int>(
+                    selector: (_, provider) => provider.lastUpdated,
                     shouldRebuild: (previous, next) {
-                      return true;
-                      //return index == next;
+                      return index == next;
                     },
                     builder: (context, value, child) => ChoiceWidget(
                         question:
